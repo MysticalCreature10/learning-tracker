@@ -81,7 +81,7 @@ More than anything, this project feels like a milestone. It reminded me that gro
 
 ## 🔗 Live Demo
 
-[Coming soon – to be deployed]
+https://katherines-learning-tracker.netlify.app/
 
 ---
 
