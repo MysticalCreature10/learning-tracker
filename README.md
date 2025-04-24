@@ -18,7 +18,7 @@ This project allows users to log their learning progress, filter entries, and vi
 ## 📌 Why I Built This
 
 This project was born out of a deep desire to sink my teeth into something completely new (and, let’s be honest — a little intimidating at first).  
-I had never used React or Firebase before, so I challenged myself to build something from scratch that felt meaningful, practical, and even a bit fun.
+I had never used React or Cloudflare before, so I challenged myself to build something from scratch that felt meaningful, practical, and even a bit fun.
 
 Since I’m working towards a career in cloud computing, I wanted to start using cloud-based tools like Firebase in a hands-on way. This project gave me structure, helped me stay consistent with my learning, and doubled as a cool way to track my growth without relying on sticky notes and pure chaos.
 
@@ -33,49 +33,43 @@ More than anything, this project feels like a milestone. It reminded me that gro
 
 ## 🛠️ Technologies Used
 
-- **JavaScript (ES6+)** – Core language used throughout the project  
-- **React** – Component-based frontend library for building the UI  
-- **Firebase (Firestore)** – Real-time cloud database for storing entries  
-- **Node.js** – JavaScript runtime environment powering the development setup  
-- **HTML5 + CSS3** – For layout, styling, and visual effects  
-- **Git + GitHub** – Version control and code hosting  
-- **VS Code** – Code editor used for development  
+JavaScript (ES6+) – Core language
 
+React – Frontend library for UI
+
+Firebase (Firestore) – NoSQL cloud database
+
+HTML5 + CSS3 – For layout and styling
+
+Node.js – Runtime for local development
+
+Git + GitHub – Version control and deployment
+
+Netlify – Hosting platform
+
+VS Code – Code editor
 
 ---
 
 ## 🧠 Skills Demonstrated
 
-- **Built functional components using React**  
-  → I broke the app into small reusable building blocks (like the form and the list) using React.
-
-- **Managed state and reactivity with React Hooks**  
-  → I used special tools in React (called Hooks) to let the app remember and respond to user input.
-
-- **Integrated a NoSQL cloud database (Firestore)**  
-  → I connected the app to Firebase so learning entries are saved in the cloud and updated in real-time.
-
-- **Created a responsive UI using modern HTML5/CSS3**  
-  → I used modern HTML and CSS to make the app look good and work well on different screen sizes.
-
-- **Designed a clean and themed interface with soft-glass effects**  
-  → I designed the app to have a light, bubbly, and soft glass-like look for a modern user experience.
-
-- **Used Git & GitHub for version control**  
-  → I tracked changes to my code and uploaded my project online so others (like employers) can view it.
-
-- **Worked with Node.js in the development workflow**  
-  → I used Node.js behind the scenes to install tools, run the app locally, and manage packages like Firebase.
+- Built functional, reusable components in React
+- Managed state with React Hooks
+- Connected and synced to Firestore in real-time
+- Implemented entry editing and form reusability
+- Added dark mode with theme toggling
+- Created a downloadable .json export feature
+- Designed responsive layouts using modern CSS
+- Version-controlled with Git and published via GitHub
 
 
 ---
 
 ## 🚀 Future Improvements
 
-- Authentication (Firebase Auth)
-- Editable entries
+- Authentication
 - Export data as CSV
-- Dark mode toggle 🌙
+- Graphs or insights to visualise learning trends
 
 ---
 
