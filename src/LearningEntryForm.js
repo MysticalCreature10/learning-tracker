@@ -1,48 +1,80 @@
-import React, { useState } from 'react';
-import { db } from './firebase';
-import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import React, { useEffect, useState } from "react";
 
-function LearningEntryForm() {
-  const [topic, setTopic] = useState('');
-  const [notes, setNotes] = useState('');
-  const [confidence, setConfidence] = useState('medium');
-  const [tag, setTag] = useState('');
-  const [customTag, setCustomTag] = useState('');
-  const [timeSpent, setTimeSpent] = useState('');
-  const [resourceLink, setResourceLink] = useState('');
+const API_BASE = "http://127.0.0.1:8787";
+
+function LearningEntryForm({ onEntrySaved, editingEntry }) {
+  const [topic, setTopic] = useState("");
+  const [notes, setNotes] = useState("");
+  const [confidence, setConfidence] = useState("medium");
+  const [tag, setTag] = useState("");
+  const [customTag, setCustomTag] = useState("");
+  const [timeSpent, setTimeSpent] = useState("");
+  const [resourceLink, setResourceLink] = useState("");
+
+  useEffect(() => {
+    if (editingEntry) {
+      setTopic(editingEntry.topic || "");
+      setNotes(editingEntry.notes || "");
+      setConfidence(editingEntry.confidence || "medium");
+      setTag(editingEntry.tag || "");
+      setCustomTag("");
+      setTimeSpent(editingEntry.timeSpent || "");
+      setResourceLink(editingEntry.resourceLink || "");
+    }
+  }, [editingEntry]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      await addDoc(collection(db, 'entries'), {
-        topic,
-        notes,
-        confidence,
-        tag: tag === 'Custom' ? customTag : tag,
-        timeSpent,
-        resourceLink,
-        createdAt: Timestamp.now(),
-      });
+    const entry = {
+      topic,
+      notes,
+      confidence,
+      tag: tag === "Custom" ? customTag : tag,
+      timeSpent,
+      resourceLink,
+    };
 
-      // Clear form
-      setTopic('');
-      setNotes('');
-      setConfidence('medium');
-      setTag('');
-      setCustomTag('');
-      setTimeSpent('');
-      setResourceLink('');
-      alert('Entry added!');
+    try {
+      const res = await fetch(
+        `${API_BASE}/entries${editingEntry ? `/${editingEntry.id}` : ""}`,
+        {
+          method: editingEntry ? "PATCH" : "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(entry),
+        }
+      );
+
+      if (!res.ok) {
+        const errorMessage = await res.text();
+        throw new Error(`Server error ${res.status}: ${errorMessage}`);
+      }
+
+      // Reset form after submit
+      setTopic("");
+      setNotes("");
+      setConfidence("medium");
+      setTag("");
+      setCustomTag("");
+      setTimeSpent("");
+      setResourceLink("");
+
+      alert(editingEntry ? "✅ Entry updated!" : "✅ Entry added!");
+
+      if (typeof onEntrySaved === "function") onEntrySaved();
     } catch (err) {
-      console.error('Error adding entry:', err);
+      console.error("Error saving entry:", err.message);
+      alert("❌ Failed to save entry. Please try again.");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: '400px', margin: '0 auto' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-        <h2>Add Learning Entry</h2>
+    <form
+      onSubmit={handleSubmit}
+      style={{ maxWidth: "400px", margin: "0 auto" }}
+    >
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+        <h2>{editingEntry ? "Edit Entry" : "Add Learning Entry"}</h2>
 
         <label>Topic:</label>
         <input
@@ -70,10 +102,7 @@ function LearningEntryForm() {
         </select>
 
         <label>Tag:</label>
-        <select
-          value={tag}
-          onChange={(e) => setTag(e.target.value)}
-        >
+        <select value={tag} onChange={(e) => setTag(e.target.value)}>
           <option value="">-- Select a tag --</option>
           <option value="Cybersecurity">Cybersecurity</option>
           <option value="Python">Python</option>
@@ -82,7 +111,7 @@ function LearningEntryForm() {
           <option value="Custom">Custom</option>
         </select>
 
-        {tag === 'Custom' && (
+        {tag === "Custom" && (
           <>
             <label>Custom Tag:</label>
             <input
@@ -110,7 +139,9 @@ function LearningEntryForm() {
           placeholder="https://example.com"
         />
 
-        <button type="submit">Save Entry</button>
+        <button type="submit">
+          {editingEntry ? "Update Entry" : "Save Entry"}
+        </button>
       </div>
     </form>
   );

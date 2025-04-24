@@ -177,3 +177,74 @@ button:hover {
     transform: translateX(30px);
   }
 }
+
+/* DARK MODE STYLES */
+.dark {
+  background-color: #1f2937;
+  color: #f3f4f6;
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #374151;
+  color: #f9fafb;
+  border: 1px solid #4b5563;
+}
+
+.dark .entry {
+  background-color: #374151;
+  border: 1px solid #4b5563;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Fix white border in dark mode */
+body.dark, .dark {
+  background-color: #1f2937 !important;
+  margin: 0;
+  padding: 2rem;
+}
+
+/* Match toggle button with "Save Entry" style */
+.toggle-darkmode-btn {
+  background: linear-gradient(135deg, #a5b4fc, #c4b5fd);
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(165, 180, 252, 0.6);
+  transition: all 0.2s ease-in-out;
+  display: block;
+  margin: 0 auto 2rem auto;
+  width: fit-content;
+}
+
+.toggle-darkmode-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(165, 180, 252, 0.8);
+}
+
+.toggle-darkmode-btn {
+  background: linear-gradient(135deg, #a5b4fc, #c4b5fd);
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(165, 180, 252, 0.6);
+  transition: all 0.2s ease-in-out;
+  display: block;
+  margin: 0 auto 2rem auto;
+  width: fit-content;
+}
+
+.toggle-darkmode-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(165, 180, 252, 0.8);
+}
+
